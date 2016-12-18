@@ -1,8 +1,8 @@
 from time import sleep
 from threading import Thread
 from Queue import Queue
-
 from random import randint
+from Customer import *
 
 STORE = {
     "lemons" : .5,
@@ -42,18 +42,6 @@ class Vendor(object):
         print "CURRENT CUSTOMER QUEUE :"
         self.view_queue()
 
-class Customer(object):
-
-    def __str__(self):
-        return "Customer"
-
-    def __repr__(self):
-        return str(self)
-
-    def lineup(self):
-        return bool(randint(0, 1))
-
-
 def start():
     name = raw_input("Input Name : ")
     customer_queue = Queue()
@@ -61,13 +49,6 @@ def start():
     customer_thread.daemon = True
     customer_thread.start()
     return Vendor(name,customer_queue)
-
-def generate_customers(queue):
-    while True:
-        sleep(5)
-        c = Customer()
-        if c.lineup():
-            queue.put(c)
 
 def dispatch(vendor, cmd):
     f = getattr(vendor, cmd, None)

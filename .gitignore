@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+#BKQ tilde stuff
+*~
+
+#DS STORE
+.DS_Store

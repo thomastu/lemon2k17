@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Using the latest technology, the Lemon2K17 engine manages the lemon2k17 universe.
 
-from queue import Queue
-
+This will eventually become a monolithic mega-class that powers a single game session.
+"""
 from .vendor import Vendor
 
 class Lemon2KEngine(object):
@@ -11,7 +13,9 @@ class Lemon2KEngine(object):
         self.vendor = Vendor(name)
 
     def status(self, menu=None):
-        if menu == "money":
-            return self.vendor.money
+        if menu == "customers":
+            return list(self.vendor.customers.queue)
+        if hasattr(self.vendor, menu):
+            return getattr(self.vendor, menu)
         else:
-            return "Invalid Status"
+            return "Invalid menu."

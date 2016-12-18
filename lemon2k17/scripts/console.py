@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 
-from cmd import Cmd
+from cmd2 import Cmd
 from ..engine import Lemon2KEngine
 
 class LemonConsole(Cmd, object):
@@ -22,7 +22,7 @@ class LemonConsole(Cmd, object):
         """Display input status menu"""
         result = self.engine.status(arg)
         if callable(result):
-            print(result(arg))
+            print(result())
         else:
             print(result)
 
@@ -31,12 +31,6 @@ class LemonConsole(Cmd, object):
 
     def do_close(self, arg):
         self.engine.vendor.close()
-
-    # Management commands
-    def do_exit(self, *args):
-        # Exit should save, but that means we need a save method
-        # self.engine.save()
-        return True
 
 
 def main():

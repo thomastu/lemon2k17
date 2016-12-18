@@ -33,7 +33,7 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-    install_requires=['future'],
+    install_requires=['future', 'cmd2'],
 
     extras_require={
         'dev': ['check-manifest'],
